@@ -1,9 +1,14 @@
 [workspace]
-channels = ["conda-forge"]
+channels = ["conda-forge", "bioconda"]
 name = "ambient-data-download"
 platforms = ["linux-64"]
 version = "0.1.0"
 
 [dependencies]
-python = ">=3.11"
-requests = "*"
+r-base = ">=4.4"
+bioconductor-dropletutils = "*"
+bioconductor-singlecellexperiment = "*"
+bioconductor-anndatar = "*"
+r-argparser = "*"
+r-yaml = "*"
+r-jsonlite = "*"
