@@ -197,6 +197,11 @@ main <- function() {
     cd[, c("Barcode", "Sample", "gem_barcode", "probe_barcode") := NULL]
 
     colData(sce) <- DataFrame(cd, row.names = cd$cell_id)
+    # colData<- renames only colData; the counts matrix still stores the raw
+    # 10x barcodes (set by `counts(sce) <- ...` in download_and_read_10x), and
+    # anndataR::write_h5ad checks those against the obs names. Store the
+    # counts again so the matrix carries the new cell ids too.
+    counts(sce) <- counts(sce)
     colData(sce)$pool_id <- pool_id
     colData(sce)$species <- "mouse"
     colData(sce)$sample_id <- NA_character_ # sample_id not known at this stage
